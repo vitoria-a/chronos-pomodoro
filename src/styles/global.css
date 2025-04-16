@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+  font-size: 1.875rem;
+}
+
+h1 {
+  color: var(--primary);
+}
+
+p {
+  font-size: 1rem;
+}
