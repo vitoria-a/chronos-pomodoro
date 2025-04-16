@@ -6,7 +6,7 @@ import "./styles/theme.css";
 export function App() {
   return (
     <>
-      <Heading />
+      <Heading>Hello, world!</Heading>
       <p>Welcome to your new Vite + React app!</p>
     </>
   );
