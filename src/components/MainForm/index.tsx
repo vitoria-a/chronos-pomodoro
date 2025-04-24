@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
-import { getNextCycleType } from "../../utils/getNextCycleTyppe";
+import { getNextCycleType } from "../../utils/getNextCycleType";
 import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 
 export function MainForm() {
@@ -66,9 +66,11 @@ export function MainForm() {
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div className="formRow">
-        <Cycles />
-      </div>
+      {state.currentCycle > 0 && (
+        <div className="formRow">
+          <Cycles />
+        </div>
+      )}
 
       <div className="formRow">
         <Button icon={<PlayCircleIcon />} />
