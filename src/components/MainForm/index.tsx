@@ -2,16 +2,58 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycles } from "../Cycles";
 import { Button } from "../Button";
 import { Input } from "../Input";
+import { useRef } from "react";
+import { TaskModel } from "../../models/TaskModel";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 export function MainForm() {
+  const { setState } = useTaskContext();
+  const taskNameInput = useRef<HTMLInputElement>(null);
+
+  function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (taskNameInput.current === null) return;
+    const taskName = taskNameInput.current.value.trim();
+
+    if (!taskName) {
+      alert("Insert task name");
+      return;
+    }
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: taskName,
+      startDate: Date.now(),
+      completeDate: null,
+      interruptDate: null,
+      duration: 1,
+      type: "workTime",
+    };
+
+    const secondsRemaining = newTask.duration * 60;
+
+    setState((prevState) => {
+      return {
+        ...prevState,
+        activeTask: newTask,
+        currentCycle: 1,
+        secondsRemaining,
+        formattedSecondsRemaining: "00:00",
+        tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
+
   return (
-    <form className="form" action="">
+    <form action="" className="form" onSubmit={handleCreateNewTask}>
       <div className="formRow">
         <Input
           labelText="task"
           id="meuInput"
           type="text"
-          placeholder="Digite algo"
+          placeholder="Insert new task"
+          ref={taskNameInput}
         />
       </div>
 
