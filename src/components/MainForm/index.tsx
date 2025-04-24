@@ -54,11 +54,12 @@ export function MainForm() {
     <form action="" className="form" onSubmit={handleCreateNewTask}>
       <div className="formRow">
         <Input
+          disabled={!!state.activeTask}
           labelText="task"
           id="meuInput"
-          type="text"
           placeholder="Insert new task"
           ref={taskNameInput}
+          type="text"
         />
       </div>
 
