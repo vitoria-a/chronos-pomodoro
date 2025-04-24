@@ -50,6 +50,26 @@ export function MainForm() {
     });
   }
 
+  function handleStopCurrentTask() {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        tasks: prevState.tasks.map((task) => {
+          if (task.id === prevState.activeTask?.id) {
+            return {
+              ...task,
+              interruptDate: Date.now(),
+            };
+          }
+          return task;
+        }),
+      };
+    });
+  }
+
   return (
     <form action="" className="form" onSubmit={handleCreateNewTask}>
       <div className="formRow">
@@ -74,20 +94,25 @@ export function MainForm() {
       )}
 
       <div className="formRow">
-        {!state.activeTask ? (
+        {!state.activeTask && (
           <Button
             aria-label="Start new task"
             icon={<PlayCircleIcon />}
+            key="submit_button"
             type="submit"
             title="Start new task"
           />
-        ) : (
+        )}
+
+        {!!state.activeTask && (
           <Button
             aria-label="Stop current task"
             color="red"
             icon={<StopCircleIcon />}
+            key="stop_button"
             type="button"
             title="Stop current task"
+            onClick={handleStopCurrentTask}
           />
         )}
       </div>
