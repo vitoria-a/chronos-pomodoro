@@ -9,6 +9,7 @@ import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import { Tips } from "../Tips";
+import { toast } from "react-toastify";
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -23,7 +24,7 @@ export function MainForm() {
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      alert("Insert new task name");
+      toast.warn("Please insert a task name");
       return;
     }
 
