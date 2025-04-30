@@ -20,9 +20,15 @@ export function Tips() {
       </span>
     ),
     shortBreakTime: (
-      <span>Next rest is {state.config.shortBreakTime} minutes</span>
+      <span>
+        Next rest is <b>{state.config.shortBreakTime} minutes</b>
+      </span>
     ),
-    longBreakTime: <span>Next rest will be long</span>,
+    longBreakTime: (
+      <span>
+        Next <b>rest will be long</b>
+      </span>
+    ),
   };
 
   return (
