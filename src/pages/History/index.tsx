@@ -29,6 +29,10 @@ export function History() {
   );
 
   useEffect(() => {
+    document.title = "History - Chronos Pomodoro";
+  }, []);
+
+  useEffect(() => {
     setSortTaskOptions((prevState) => ({
       ...prevState,
       tasks: sortTasks({
