@@ -9,7 +9,7 @@ import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import { Tips } from "../Tips";
-import { toast } from "react-toastify";
+import { showMessage } from "../adapters/showMessage";
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -21,12 +21,13 @@ export function MainForm() {
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    showMessage.dismiss();
 
     if (taskNameInput.current === null) return;
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      toast.warn("Please insert a task name");
+      showMessage.warn("Please insert a task name");
       return;
     }
 
@@ -41,10 +42,13 @@ export function MainForm() {
     };
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+    showMessage.success("Started task");
   }
 
   function handleStopCurrentTask() {
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
+    showMessage.dismiss;
+    showMessage.error("Stopped task");
   }
 
   return (
