@@ -6,6 +6,7 @@ import { Heading } from "../../components/Heading";
 import { MainTemplate } from "../../templates/MainTemplate";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { useRef } from "react";
+import { showMessage } from "../../adapters/showMessage";
 
 export function Settings() {
   const { state } = useTaskContext();
@@ -15,12 +16,36 @@ export function Settings() {
 
   function handleSaveSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    showMessage.dismiss();
 
-    const workTime = workTimeInput.current?.value;
-    const shortBreakTime = shortBreakTimeInput.current?.value;
-    const longBreakTime = longBreakTimeInput.current?.value;
+    const formErrors = [];
 
-    console.log(workTime, shortBreakTime, longBreakTime);
+    const workTime = Number(workTimeInput.current?.value);
+    const shortBreakTime = Number(shortBreakTimeInput.current?.value);
+    const longBreakTime = Number(longBreakTimeInput.current?.value);
+
+    if (isNaN(workTime) || isNaN(shortBreakTime) || isNaN(longBreakTime)) {
+      formErrors.push("Insert only numbers for ALL fields");
+    }
+
+    if (workTime < 1 || workTime > 99) {
+      formErrors.push("Insert values between 1 and 99 for focus");
+    }
+
+    if (shortBreakTime < 1 || shortBreakTime > 30) {
+      formErrors.push("Insert values between 1 and 30 for short rest");
+    }
+
+    if (longBreakTime < 1 || longBreakTime > 60) {
+      formErrors.push("Insert values between 1 and 60 for long rest");
+    }
+
+    if (formErrors.length > 0) {
+      formErrors.forEach((error) => {
+        showMessage.error(error);
+      });
+      return;
+    }
   }
 
   return (
@@ -43,6 +68,7 @@ export function Settings() {
               labelText="Focus"
               id="workTime"
               ref={workTimeInput}
+              type="number"
             />
           </div>
           <div className="formRow">
@@ -51,6 +77,7 @@ export function Settings() {
               labelText="Short rest"
               id="shortBreakTime"
               ref={shortBreakTimeInput}
+              type="number"
             />
           </div>
           <div className="formRow">
@@ -59,6 +86,7 @@ export function Settings() {
               labelText="Long rest"
               id="longBreakTime"
               ref={longBreakTimeInput}
+              type="number"
             />
           </div>
           <div className="formRow">
