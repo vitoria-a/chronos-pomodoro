@@ -52,23 +52,23 @@ export function Menu() {
       >
         <HouseIcon />
       </RouterLink>
-      <a
+      <RouterLink
         className={styles.menuLink}
         href="/history/"
         aria-label="View history"
         title="View history"
       >
         <HistoryIcon />
-      </a>
-      <a
+      </RouterLink>
+      <RouterLink
         className={styles.menuLink}
         href="#"
         aria-label="Settings"
         title="Settings"
       >
         <SettingsIcon />
-      </a>
-      <a
+      </RouterLink>
+      <RouterLink
         className={styles.menuLink}
         href="#"
         aria-label="Change theme"
@@ -76,7 +76,7 @@ export function Menu() {
         onClick={handleThemeChange}
       >
         {nextThemeIcon[theme]}
-      </a>
+      </RouterLink>
     </div>
   );
 }
