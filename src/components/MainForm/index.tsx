@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || "";
+
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
 
@@ -49,6 +51,7 @@ export function MainForm() {
     <form action="" className="form" onSubmit={handleCreateNewTask}>
       <div className="formRow">
         <Input
+          defaultValue={lastTaskName}
           disabled={!!state.activeTask}
           labelText="Task"
           id="myInput"
