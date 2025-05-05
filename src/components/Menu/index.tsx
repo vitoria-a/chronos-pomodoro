@@ -7,6 +7,7 @@ import {
   SettingsIcon,
   SunIcon,
 } from "lucide-react";
+import { Link } from "react-router";
 
 type AvailableThemes = "dark" | "light";
 
@@ -43,14 +44,14 @@ export function Menu() {
 
   return (
     <div className={styles.menu}>
-      <a
+      <Link
         className={styles.menuLink}
-        href="#"
+        to="/"
         aria-label="Go to Home"
         title="Go to Home"
       >
         <HouseIcon />
-      </a>
+      </Link>
       <a
         className={styles.menuLink}
         href="#"
