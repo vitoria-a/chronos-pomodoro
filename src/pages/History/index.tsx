@@ -128,8 +128,8 @@ export function History() {
                 {sortTasksOptions.tasks.map((task) => {
                   const taskTypeDictionary = {
                     workTime: "Focus",
-                    shortBreakTime: "Short Break",
-                    longBreakTime: "Long Break",
+                    shortBreakTime: "Short rest",
+                    longBreakTime: "Long rest",
                   };
 
                   return (
