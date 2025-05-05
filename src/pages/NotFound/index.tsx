@@ -1,6 +1,7 @@
 import { Container } from "../../components/Container";
 import { GenericHtml } from "../../components/GenericHtml";
 import { Heading } from "../../components/Heading";
+import { RouterLink } from "../../components/RouterLink";
 import { MainTemplate } from "../../templates/MainTemplate";
 
 export function NotFound() {
@@ -16,10 +17,10 @@ export function NotFound() {
           </p>
           <p>
             But calm down, you're not lost in space (yet). You can come back in
-            security for the <a href="/">main page</a> or{" "}
-            <a href="/history">for history</a> — or you can stop here and
-            pretend that you have found a secret page that only the most can
-            access. 🧭✨
+            security for the <RouterLink href="/">main page</RouterLink> or{" "}
+            <RouterLink href="/history/">for history</RouterLink> — or you can
+            stop here and pretend that you have found a secret page that only
+            the most can access. 🧭✨
           </p>
           <p>
             If you think this page should exist (or if you want to hit a talk
