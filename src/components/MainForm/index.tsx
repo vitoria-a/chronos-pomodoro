@@ -47,7 +47,8 @@ export function MainForm() {
 
   function handleStopCurrentTask() {
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
-    showMessage.dismiss;
+
+    showMessage.dismiss();
     showMessage.error("Stopped task");
   }
 
